@@ -47,14 +47,9 @@ You can then execute your native executable with: `./target/test-quarkus-1.0.0-S
 
 If you want to learn more about building native executables, please consult https://quarkus.io/guides/maven-tooling.
 
-## Related Guides
+## Windows specificities
 
-- RESTEasy Classic ([guide](https://quarkus.io/guides/resteasy)): REST endpoint framework implementing JAX-RS and more
+Follow this guide to install GraalVM and native-image (https://medium.com/graalvm/using-graalvm-and-native-image-on-windows-10-9954dc071311)
 
-## Provided Code
-
-### RESTEasy JAX-RS
-
-Easily start your RESTful Web Services
-
-[Related guide section...](https://quarkus.io/guides/getting-started#the-jax-rs-resources)
+Once this is done, all maven and docker commands should be executed in a cmd augmented with VS capabilities:
+"C:\Program Files (x86)\Microsoft Visual Studio\2019\BuildTools\VC\Auxiliary\Build\vcvars64.bat"

@@ -3,15 +3,15 @@
 #
 # Before building the container image run:
 #
-# ./mvnw package -Pnative
+# mvnw package -Pnative
 #
 # Then, build the image with:
 #
-# docker build -f src/main/docker/Dockerfile.native -t quarkus/greetings-knative .
+# docker build -f src/main/docker/Dockerfile.native -t ceihtel/greetings-knative .
 #
 # Then run the container using:
 #
-# docker run -i --rm -p 8080:8080 quarkus/greetings-knative
+# docker run -i --rm -p 8080:8080 ceihtel/greetings-knative
 #
 ###
 FROM registry.access.redhat.com/ubi8/ubi-minimal:8.5

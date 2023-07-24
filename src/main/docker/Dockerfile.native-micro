@@ -6,15 +6,15 @@
 #
 # Before building the container image run:
 #
-# ./mvnw package -Pnative
+# mvnw package -Dnative -Dquarkus.native.container-build=true -Dquarkus.container-image.build=true
 #
 # Then, build the image with:
 #
-# docker build -f src/main/docker/Dockerfile.native-micro -t quarkus/greetings-knative .
+# docker build -f src/main/docker/Dockerfile.native-micro -t ceihtel/greetings-knative .
 #
 # Then run the container using:
 #
-# docker run -i --rm -p 8080:8080 quarkus/greetings-knative
+# docker run -i --rm -p 8080:8080 ceihtel/greetings-knative
 #
 ###
 FROM quay.io/quarkus/quarkus-micro-image:2.0

@@ -33,21 +33,10 @@ The application, packaged as an _über-jar_, is now runnable using `java -jar ta
 
 ## Creating a native executable
 
-You can create a native executable using: 
-```shell script
-./mvnw package -Pnative
-```
-
-Or, if you don't have GraalVM installed, you can run the native executable build in a container using: 
-```shell script
-./mvnw package -Pnative -Dquarkus.native.container-build=true
-```
-
-You can then execute your native executable with: `./target/greetings-knative-1.0.0-SNAPSHOT-runner`
-
+Follow the instructions located in Dockerfile files located in this repository.
 If you want to learn more about building native executables, please consult https://quarkus.io/guides/maven-tooling.
 
-## Windows specificities
+### Windows specificities
 
 Follow this guide to install GraalVM and native-image (https://medium.com/graalvm/using-graalvm-and-native-image-on-windows-10-9954dc071311)
 

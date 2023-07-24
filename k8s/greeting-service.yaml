@@ -1,0 +1,17 @@
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  name: greeting-service
+  namespace: default
+spec:
+  template:
+    metadata:
+      annotations:
+        # Target 10 in-flight-requests per pod.
+        autoscaling.knative.dev/target: "10"
+    spec:
+      containers:
+        - image: ceihtel/hello-quarkus-micro:latest
+          env:
+            - name: GREETING_NAME
+              value: "Monaco Telecom"

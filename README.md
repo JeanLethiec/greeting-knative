@@ -1,4 +1,4 @@
-# test-quarkus Project
+# greetings-knative Project
 
 This project uses Quarkus, the Supersonic Subatomic Java Framework.
 
@@ -43,7 +43,7 @@ Or, if you don't have GraalVM installed, you can run the native executable build
 ./mvnw package -Pnative -Dquarkus.native.container-build=true
 ```
 
-You can then execute your native executable with: `./target/test-quarkus-1.0.0-SNAPSHOT-runner`
+You can then execute your native executable with: `./target/greetings-knative-1.0.0-SNAPSHOT-runner`
 
 If you want to learn more about building native executables, please consult https://quarkus.io/guides/maven-tooling.
 
@@ -53,3 +53,46 @@ Follow this guide to install GraalVM and native-image (https://medium.com/graalv
 
 Once this is done, all maven and docker commands should be executed in a cmd augmented with VS capabilities:
 "C:\Program Files (x86)\Microsoft Visual Studio\2019\BuildTools\VC\Auxiliary\Build\vcvars64.bat"
+
+## Demonstration
+
+- Build your image and push it to Docker Hub 
+- Start Kubernetes from Docker Desktop
+- In namespace default, create a new knative service (careful, knative does not like local repositories, use Docker Hub for now)
+```
+kubectl -n default apply -f greeting-service.yaml
+```
+- Observe our freshly-created service, get its URL 
+```
+kubectl -n default get service.serving.knative.dev
+```
+- Observe the pods running and terminating according to the requests
+```
+kubectl -n default get po
+```
+- Call http://xxx/hello to get an answer from the service
+- Generate some load using `hey` (30 sec of 50 requests)
+```
+hey -z 30s -c 50 http://greeting-service.default.127.0.0.1.sslip.io/hello
+```
+- Update the env var
+```
+kn service update greeting-service --env GREETING_NAME=friends
+```
+- See how the change has been reflected by calling the endpoint again
+- Look at the different revisions
+```
+kn revisions list
+```
+- Split the traffic between revisions
+```
+kn service update greeting-service --traffic greeting-service-00002=50 --traffic @latest=50
+```
+- Calling the endpoint multiple times will now end up with different behaviors
+- Clean the service
+```
+kubectl -n default delete service.serving.knative.dev/greeting-service
+```
+
+## Useful documentation
+- https://knative.dev/docs/serving/autoscaling/

@@ -75,7 +75,7 @@ kn revisions list
 ```
 - Split the traffic between revisions
 ```
-kn service update greeting-service --traffic greeting-service-00002=50 --traffic @latest=50
+kn service update greeting-service --traffic greeting-service-00001=50 --traffic @latest=50
 ```
 - Calling the endpoint multiple times will now end up with different behaviors
 - Clean the service
